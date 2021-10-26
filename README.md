@@ -1,2 +1,3 @@
-# logpass_pytest_plugins
-pytest plugins used by LogPass
+# LogPass pytest plugins
+
+pytest plugins used by LogPass.

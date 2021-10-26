@@ -1,0 +1,20 @@
+[importlinter]
+root_package = logpass_pytest_plugins
+include_external_packages = True
+
+
+[importlinter:contract:layers]
+name = Layered architecture
+type = layers
+containers =
+  logpass_pytest_plugins
+layers =
+  contrib
+
+[importlinter:contract:independence]
+name = Plugins independence
+type = independence
+modules =
+  logpass_pytest_plugins.contrib.auto_pytest_factoryboy
+  logpass_pytest_plugins.contrib.channels
+  logpass_pytest_plugins.contrib.rest_framework

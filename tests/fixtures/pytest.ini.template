@@ -1,0 +1,15 @@
+[pytest]
+{extra_config}
+addopts =
+  # disable extra plugins
+  -p no:Faker
+  -p no:cov
+  -p no:deadfixtures
+  -p no:forked
+  -p no:mock
+  -p no:randomly
+  -p no:timeout
+  -p no:xdist
+  {extra_addopts}
+testpaths = .
+console_output_style = classic

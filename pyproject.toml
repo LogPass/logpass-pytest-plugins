@@ -1,0 +1,79 @@
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.poetry]
+name = "logpass_pytest_plugins"
+version = "0.0.1"
+description = "Plugins to pytest used by LogPass"
+authors = [
+  "Bartosz Barwikowski <bartosz.barwikowski@logpass.me>",
+  "Łukasz Skarżyński <lukasz.skarzynski@logpass.me>",
+]
+
+readme = "README.md"
+repository = "https://github.com/LogPass/logpass_pytest_plugins"
+homepage = "logpass.me"
+
+keywords = [
+  "pytest",
+  "pytest-plugin",
+  "django",
+  "logpass",
+  "tests",
+  "test",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Topic :: Software Development :: Testing",
+]
+
+
+[tool.poetry.plugins.pytest11]
+auto_pytest_factoryboy = "logpass_pytest_plugins.contrib.auto_pytest_factoryboy"
+channels = "logpass_pytest_plugins.contrib.channels"
+rest_framework = "logpass_pytest_plugins.contrib.rest_framework"
+
+
+[tool.poetry.dependencies]
+python = "^3.6.1"
+
+pytest = ">=5.4.0"
+
+
+[tool.poetry.dev-dependencies]
+# tests
+coverage-conditional-plugin = "^0.4.0"
+pytest-cov = "^3.0.0"
+pytest-deadfixtures = "^2.2.1"
+pytest-mock = "^3.6.1"
+pytest-randomly = "^3.10.1"
+pytest-timeout = "^1.4.2"
+pytest-xdist = "^2.4.0"
+
+# linters
+# python
+flake8-pytest-style = "^1.5.0"
+flake8-todos = "^0.1.5"
+flake8-typing-imports = "^1.11.0"
+import-linter = "^1.2.6"
+wemake-python-styleguide = "^0.15.3"
+# other
+safety = "^1.10.3"
+
+# type hintings
+mypy = "^0.910"
+
+# plugins
+# django (channels and rest_framework)
+Django = "^3.2.8"
+channels = "^3.0.4"
+djangorestframework = "^3.12.4"
+pytest-asyncio = "^0.15.1"
+pytest-django = "^4.4.0"
+# auto_pytest_factoryboy
+pytest-factoryboy = "^2.1.0"

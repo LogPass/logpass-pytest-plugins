@@ -1,0 +1,16 @@
+---
+name: misspell
+'on':
+  workflow_dispatch:
+  schedule:
+    - cron: '20 8 * * 1-5'
+
+jobs:
+  build:
+    uses: LogPass/reusable-workflows/.github/workflows/misspell.yml@0.0.3
+    with:
+      pr-reviewers: |
+        bbarwik
+        skarzi
+    secrets:
+      token: "${{ secrets.BOT__GITHUB_TOKEN }}"
