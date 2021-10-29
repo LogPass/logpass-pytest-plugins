@@ -19,7 +19,7 @@ async def _flush_channels(settings):
 async def websocket_communicator_factory(
     settings,
     _flush_channels,  # noqa: WPS442
-):  # noqa: WPS442
+):
     """Auto-disconnectable ``WebsocketCommunicator`` instances factory."""
     communicators = []
     application = import_string(settings.ASGI_APPLICATION)

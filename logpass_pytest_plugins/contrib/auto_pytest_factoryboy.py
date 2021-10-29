@@ -55,7 +55,7 @@ def pytest_configure(config):
         _recursively_register_factories_from(root_dir, factory_file_pattern)
 
 
-def _recursively_register_factories_from(  # noqa: WPS210
+def _recursively_register_factories_from(
     root_dir: Path,
     glob_pathname: str,
 ) -> None:
