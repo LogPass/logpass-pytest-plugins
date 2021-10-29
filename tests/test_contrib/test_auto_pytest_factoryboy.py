@@ -8,7 +8,7 @@ def tester(pytester, monkeypatch) -> pytest.Pytester:
     pytester.makeconftest(
         "pytest_plugins = ['pytest-factoryboy', 'auto_pytest_factoryboy']",
     )
-    with open((pytester.path / 'pytest.ini.template'), mode='r') as pytest_ini:
+    with open(pytester.path / 'pytest.ini.template') as pytest_ini:
         pytester.makefile(
             '.ini',
             pytest=pytest_ini.read().format(

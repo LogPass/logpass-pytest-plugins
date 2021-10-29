@@ -7,7 +7,7 @@ def tester(pytester, monkeypatch) -> pytest.Pytester:
     pytester.copy_example('django/settings.py')
     pytester.copy_example('pytest.ini.template')
     pytester.makeconftest("pytest_plugins = ['django', 'rest_framework']")
-    with open((pytester.path / 'pytest.ini.template'), mode='r') as pytest_ini:
+    with open(pytester.path / 'pytest.ini.template') as pytest_ini:
         pytester.makefile(
             '.ini',
             pytest=pytest_ini.read().format(
