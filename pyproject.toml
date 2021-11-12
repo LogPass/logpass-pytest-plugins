@@ -51,7 +51,7 @@ coverage-conditional-plugin = "^0.4.0"
 pytest-cov = "^3.0.0"
 pytest-deadfixtures = "^2.2.1"
 pytest-mock = "^3.6.1"
-pytest-randomly = "^3.10.1"
+pytest-randomly = "^3.10.2"
 pytest-timeout = "^2.0.1"
 pytest-xdist = "^2.4.0"
 
