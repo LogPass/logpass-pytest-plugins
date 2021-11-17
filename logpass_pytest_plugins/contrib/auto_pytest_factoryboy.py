@@ -26,7 +26,7 @@ def pytest_addoption(parser):
     """Register plugin options."""
     parser.addini(
         ROOT_DIR_OPTION,
-        'Directory where factories declarations are search starts',
+        'Directory where factories declarations searching starts',
         type='string',
         default='.',
     )
