@@ -63,3 +63,49 @@ def test_websocket_communicator_factory(tester):  # noqa: WPS442
     tests_results = tester.runpytest()
 
     tests_results.assert_outcomes(passed=2)
+
+
+def test_http_communicator_factory(tester):  # noqa: WPS442
+    """Ensure ``http_communicator_factory`` creates expected objects."""
+    tester.makepyfile(
+        test_http_communicator_factory='''
+        import pytest
+
+        from channels.testing import HttpCommunicator
+
+
+        @pytest.mark.asyncio
+        async def test_returned_type(http_communicator_factory):
+            assert isinstance(
+                http_communicator_factory(
+                    method='GET',
+                    path='test/communicator-type',
+                ),
+                HttpCommunicator,
+            )
+
+
+        @pytest.mark.asyncio
+        async def test_multiple_calls(http_communicator_factory):
+            communicators = [
+                http_communicator_factory(
+                    method='POST',
+                    path='test/{0}'.format(counter),
+                )
+                for counter in range(5)
+            ]
+
+            assert (
+                [communicator.scope['path'] for communicator in communicators]
+                == ['test/{0}'.format(counter) for counter in range(5)]
+            )
+            assert all(
+                isinstance(communicator, HttpCommunicator)
+                for communicator in communicators
+            )
+        ''',
+    )
+
+    tests_results = tester.runpytest()
+
+    tests_results.assert_outcomes(passed=2)
