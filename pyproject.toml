@@ -74,6 +74,6 @@ Django = "^3.2.10"
 channels = "^3.0.4"
 djangorestframework = "^3.12.4"
 pytest-asyncio = "^0.16.0"
-pytest-django = "^4.5.1"
+pytest-django = "^4.5.2"
 # auto_pytest_factoryboy
 pytest-factoryboy = "^2.1.0"
