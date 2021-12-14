@@ -1029,7 +1029,7 @@ pytest = "*"
 
 [[package]]
 name = "pytest-timeout"
-version = "2.0.1"
+version = "2.0.2"
 description = "pytest plugin to abort hanging tests"
 category = "dev"
 optional = false
@@ -1362,7 +1362,7 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6.1"
-content-hash = "5a43cac0aca89021cf42d173df480cc447a65081c8416fbf61c40fd4cad38986"
+content-hash = "15da3562197b2fc557058ef0c5de69d114fc59c16780f676785d4809aee8dc2c"
 
 [metadata.files]
 asgiref = [
@@ -1856,8 +1856,8 @@ pytest-randomly = [
     {file = "pytest_randomly-3.10.3-py3-none-any.whl", hash = "sha256:b05a7a45f54cae2b5095752c6a10cb559df84448421b0420ae492dd2fb1727ef"},
 ]
 pytest-timeout = [
-    {file = "pytest-timeout-2.0.1.tar.gz", hash = "sha256:a5ec4eceddb8ea726911848593d668594107e797621e97f93a1d1dbc6fbb9080"},
-    {file = "pytest_timeout-2.0.1-py3-none-any.whl", hash = "sha256:329bdea323d3e5bea4737070dd85a0d1021dbecb2da5342dc25284fdb929dff0"},
+    {file = "pytest-timeout-2.0.2.tar.gz", hash = "sha256:e6f98b54dafde8d70e4088467ff621260b641eb64895c4195b6e5c8f45638112"},
+    {file = "pytest_timeout-2.0.2-py3-none-any.whl", hash = "sha256:fe9c3d5006c053bb9e062d60f641e6a76d6707aedb645350af9593e376fcc717"},
 ]
 pytest-xdist = [
     {file = "pytest-xdist-2.5.0.tar.gz", hash = "sha256:4580deca3ff04ddb2ac53eba39d76cb5dd5edeac050cb6fbc768b0dd712b4edf"},
