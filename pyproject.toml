@@ -47,7 +47,7 @@ pytest = ">=5.4.0"
 
 [tool.poetry.dev-dependencies]
 # tests
-coverage-conditional-plugin = "^0.4.0"
+coverage-conditional-plugin = "^0.5.0"
 pytest-cov = "^3.0.0"
 pytest-deadfixtures = "^2.2.1"
 pytest-mock = "^3.6.1"

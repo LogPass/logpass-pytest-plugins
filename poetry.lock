@@ -187,14 +187,14 @@ toml = ["toml"]
 
 [[package]]
 name = "coverage-conditional-plugin"
-version = "0.4.0"
+version = "0.5.0"
 description = "Conditional coverage based on any rules you define!"
 category = "dev"
 optional = false
 python-versions = ">=3.6,<4.0"
 
 [package.dependencies]
-coverage = ">=5.0,<6.0"
+coverage = ">=5,<7"
 packaging = ">=20.4"
 
 [[package]]
@@ -1371,7 +1371,7 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6.1"
-content-hash = "afbeb1c5188e0d3ab338c3c565d13801f3334143926ec31629317e0d90de32dd"
+content-hash = "36cc9f325bec15bb3fd2d963908f86416fa11fce53eafd8cd7c653afb60f96c2"
 
 [metadata.files]
 asgiref = [
@@ -1533,8 +1533,8 @@ coverage = [
     {file = "coverage-5.5.tar.gz", hash = "sha256:ebe78fe9a0e874362175b02371bdfbee64d8edc42a044253ddf4ee7d3c15212c"},
 ]
 coverage-conditional-plugin = [
-    {file = "coverage-conditional-plugin-0.4.0.tar.gz", hash = "sha256:3ca50bb03b32f8ba8cf63b18d830f334cb75f401579040dd5c61df1c4687fef0"},
-    {file = "coverage_conditional_plugin-0.4.0-py3-none-any.whl", hash = "sha256:3bf586f7b793a9e4e2950f7af32711012929b39d1a4b53a4829489e763fda2dc"},
+    {file = "coverage-conditional-plugin-0.5.0.tar.gz", hash = "sha256:053af7b38b07131748c6c9548c77895fd8e6b24ac81cb657f337415b64bdd3c1"},
+    {file = "coverage_conditional_plugin-0.5.0-py3-none-any.whl", hash = "sha256:513d65ebafdd16f20455d5b0ac0b72807a12ce16b7937a0d09a1c3e810eea5c2"},
 ]
 cryptography = [
     {file = "cryptography-35.0.0-cp36-abi3-macosx_10_10_x86_64.whl", hash = "sha256:d57e0cdc1b44b6cdf8af1d01807db06886f10177469312fbde8f44ccbb284bc9"},
