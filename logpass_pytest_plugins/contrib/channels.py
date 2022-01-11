@@ -1,7 +1,10 @@
 import pytest
 
 from channels.layers import get_channel_layer
-from channels.testing import WebsocketCommunicator
+from channels.testing import (
+    HttpCommunicator,
+    WebsocketCommunicator,
+)
 from django.utils.module_loading import import_string
 
 
@@ -13,8 +16,6 @@ async def _flush_channels(settings):
         await get_channel_layer(alias).flush()
 
 
-# TODO(skarzi): create fixtures for other `channels.testing` communicators
-# https://github.com/LogPass/logpass_pytest_plugins/issues/1
 @pytest.fixture
 async def websocket_communicator_factory(
     settings,
@@ -38,3 +39,18 @@ async def websocket_communicator_factory(
 
     for communicator in communicators:
         await communicator.disconnect()
+
+
+@pytest.fixture
+def http_communicator_factory(
+    settings,
+    _flush_channels,  # noqa: WPS442
+):
+    """``HttpCommunicator`` instances factory."""
+    application = import_string(settings.ASGI_APPLICATION)
+
+    def factory(*args, **kwargs) -> HttpCommunicator:
+        """Create and register ``HttpCommunicator`` instance."""
+        return HttpCommunicator(application, *args, **kwargs)
+
+    return factory
