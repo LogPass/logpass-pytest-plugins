@@ -38,7 +38,7 @@ fixtures:
   instances, that will automatically disconnect at the end of a test.
   Using this fixture also automatically flush all used channel layers
 + `http_commmunicator_factory` - factory of `HttpCommunicator`
-  instances Using this fixture also automatically flush all used
+  instances. Using this fixture also automatically flush all used
   channel layers
 
 ### `logpass_pytest_plugins.contrib.rest_framework`
