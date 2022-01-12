@@ -20,6 +20,12 @@ jobs:
           - '3.8'
           - '3.9'
           - '3.10'
+        continue-on-error:
+          - false
+        include:
+          - python-version: 3.11-dev
+            continue-on-error: true
+    continue-on-error: ${{ matrix.continue-on-error }}
     steps:
       - uses: actions/checkout@v2
       - name: "setup python ${{ matrix.python-version }}"
