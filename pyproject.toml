@@ -40,7 +40,7 @@ rest_framework = "logpass_pytest_plugins.contrib.rest_framework"
 
 
 [tool.poetry.dependencies]
-python = "^3.6.1"
+python = "^3.7.0"
 
 pytest = ">=5.4.0"
 

@@ -60,7 +60,9 @@ def _recursively_register_factories_from(
     glob_pathname: str,
 ) -> None:
     factories_counter = 0
-    factories_prefix = ''.join(random.choices(string.ascii_lowercase, k=10))
+    factories_prefix = ''.join(
+        random.choices(string.ascii_lowercase, k=10),  # noqa: S311
+    )
     for factories_path in root_dir.glob(glob_pathname):
         factories_module = _import_module_from(
             str(factories_path),
