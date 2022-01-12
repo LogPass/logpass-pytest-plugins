@@ -21,9 +21,7 @@ unit_local:
 .PHONY: unit_ci
 unit_ci:
 	poetry run pytest \
-		--junitxml .tests_reports/junit.xml \
-		-n 2 \
-		--dist loadscope
+		--junitxml .tests_reports/junit.xml
 
 
 .PHONY: unit
