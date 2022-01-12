@@ -1,0 +1,51 @@
+---
+name: release
+'on':
+  push:
+    tags:
+      - '*.*.*'
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: setup python 3.10
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
+      - name: populate dynamic environment variables
+        run: |
+          IS_PRERELEASE=true
+
+          if [[ "${GITHUB_REF#refs/tags/}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]];
+          then
+            IS_PRERELEASE=false
+          fi
+
+          echo "IS_PRERELEASE=${IS_PRERELEASE}" >> ${GITHUB_PATH}
+      - name: install poetry
+        env:
+          POETRY_HOME: "~/.poetry"
+        run: |
+          pip install --upgrade pip
+
+          curl \
+            --silent \
+            --show-error \
+            --location "https://install.python-poetry.org" \
+          | python
+          # add `poetry` to `${PATH}`:
+          echo "${POETRY_HOME}/bin" >> ${GITHUB_PATH}
+      - name: build project for distribution
+        run: poetry build
+      - name: create github release
+        uses: ncipollo/release-action@v1.9.0
+        with:
+          artifacts: "dist/*"
+          token: "${{ secrets.GITHUB_TOKEN }}"
+          draft: false
+          prerelease: env.IS_PRERELEASE == 'true'
+      - name: publish to PyPI
+        env:
+          POETRY_PYPI_TOKEN_PYPI: "${{ secrets.PYPI__TOKEN }}"
+        run: poetry publish
