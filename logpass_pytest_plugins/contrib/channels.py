@@ -1,4 +1,4 @@
-import pytest
+import pytest_asyncio
 
 from channels.layers import get_channel_layer
 from channels.testing import (
@@ -8,7 +8,7 @@ from channels.testing import (
 from django.utils.module_loading import import_string
 
 
-@pytest.fixture
+@pytest_asyncio.fixture
 async def _flush_channels(settings):
     """Flush all channels at the end of the test."""
     yield
@@ -16,7 +16,7 @@ async def _flush_channels(settings):
         await get_channel_layer(alias).flush()
 
 
-@pytest.fixture
+@pytest_asyncio.fixture
 async def websocket_communicator_factory(
     settings,
     _flush_channels,  # noqa: WPS442
@@ -41,7 +41,7 @@ async def websocket_communicator_factory(
         await communicator.disconnect()
 
 
-@pytest.fixture
+@pytest_asyncio.fixture
 def http_communicator_factory(
     settings,
     _flush_channels,  # noqa: WPS442

@@ -11,6 +11,19 @@ e.g. via pip:
 pip install logpass_pytest_plugins
 ```
 
+To install plugin with all its dependencies use one of following extras:
+
++ `auto_pytest_factoryboy`
++ `channels`
++ `rest_framework`
+
+For instance, to install `channels` and `rest_framework` plugins with all
+dependencies:
+
+```bash
+pip install logpass_pytest_plugins[channels,rest_framework]
+```
+
 ## Available plugins
 
 ### `logpass_pytest_plugins.contrib.auto_pytest_factoryboy`

@@ -6,6 +6,11 @@ ifeq ($(CI), true)
 endif
 
 
+.PHONY: install
+install:
+	poetry install --extras "auto_pytest_factoryboy channels rest_framework"
+
+
 .PHONY: lint_python
 lint_python:
 	poetry run flake8 .

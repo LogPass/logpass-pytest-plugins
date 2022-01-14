@@ -56,6 +56,6 @@ jobs:
           poetry config virtualenvs.in-project true
           # install the freshest `pip` to satisfy `safety`
           poetry run pip install --upgrade pip
-          poetry install
+          make install
       - name: test
         run: make test

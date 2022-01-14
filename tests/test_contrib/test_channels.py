@@ -1,9 +1,15 @@
 import pytest
 
 
-@pytest.fixture
-def tester(pytester, monkeypatch) -> pytest.Pytester:
-    """Setup ``pytester`` instance able to test `channels` plugin."""
+@pytest.fixture(params=['legacy', 'auto', 'strict'])
+def tester(request, pytester, monkeypatch) -> pytest.Pytester:
+    """Setup ``pytester`` instance able to test `channels` plugin.
+
+    This fixture is parametrized, so all `pytest-asycio` modes could
+    be tested.
+    Reference: https://github.com/pytest-dev/pytest-asyncio/#modes
+
+    """
     pytester.copy_example('django/settings.py')
     pytester.copy_example('django/asgi.py')
     pytester.copy_example('pytest.ini.template')
@@ -12,7 +18,10 @@ def tester(pytester, monkeypatch) -> pytest.Pytester:
         pytester.makefile(
             '.ini',
             pytest=pytest_ini.read().format(
-                extra_config='DJANGO_SETTINGS_MODULE = settings',
+                extra_config='\n'.join([
+                    'DJANGO_SETTINGS_MODULE = settings',
+                    'asyncio_mode = {0}'.format(request.param),
+                ]),
                 extra_addopts=' '.join([
                     '-p no:auto_pytest_factoryboy',
                     '-p no:pytest-factoryboy',
