@@ -26,6 +26,21 @@ pip install logpass_pytest_plugins[channels,rest_framework]
 
 ## Available plugins
 
+All plugins are used by default (that's default `pytest` behaviour).
+If you don't need some plugin (e.g. you don't use `djangorestframework`)
+simply disable it for particular command call:
+
+```bash
+pytest -p no:rest_framework
+```
+
+or do it in `pytest.ini` (or other file with `pytest` configuration):
+
+```ini
+[pytest]
+addopts = -p no:rest_framework
+```
+
 ### `logpass_pytest_plugins.contrib.auto_pytest_factoryboy`
 
 Plugin that automatically registers `factory_boy` factories to
