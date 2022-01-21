@@ -6,20 +6,20 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry]
 name = "logpass_pytest_plugins"
 version = "0.0.1"
-description = "Plugins to pytest used by LogPass"
+description = "Pytest's plugins crafted by LogPass"
 authors = [
   "Bartosz Barwikowski <bartosz.barwikowski@logpass.me>",
   "Łukasz Skarżyński <lukasz.skarzynski@logpass.me>",
 ]
-
 readme = "README.md"
 repository = "https://github.com/LogPass/logpass_pytest_plugins"
-homepage = "logpass.me"
-
+homepage = "dev.logpass.me"
 keywords = [
   "pytest",
   "pytest-plugin",
   "django",
+  "channels",
+  "factory_boy",
   "logpass",
   "tests",
   "test",
@@ -43,7 +43,6 @@ rest_framework = "logpass_pytest_plugins.contrib.rest_framework"
 python = "^3.7.0"
 
 pytest = ">=5.4.0"
-
 # optionals
 # auto_pytest_factoryboy
 pytest-factoryboy = { version = "^2.1.0", optional = true }
