@@ -13,7 +13,7 @@ authors = [
 ]
 readme = "README.md"
 repository = "https://github.com/LogPass/logpass_pytest_plugins"
-homepage = "dev.logpass.me"
+homepage = "https://dev.logpass.me"
 keywords = [
   "pytest",
   "pytest-plugin",
