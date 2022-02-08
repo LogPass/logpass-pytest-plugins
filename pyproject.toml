@@ -42,7 +42,7 @@ rest_framework = "logpass_pytest_plugins.contrib.rest_framework"
 [tool.poetry.dependencies]
 python = "^3.7.0"
 
-pytest = ">=5.4.0"
+pytest = ">=6.2.0"
 # optionals
 # auto_pytest_factoryboy
 pytest-factoryboy = { version = "^2.1.0", optional = true }
