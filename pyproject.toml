@@ -48,7 +48,7 @@ pytest = ">=5.4.0"
 pytest-factoryboy = { version = "^2.1.0", optional = true }
 # channels
 channels = { version = ">=3.0.0", optional = true }
-pytest-asyncio = { version = "^0.17.2", optional = true }
+pytest-asyncio = { version = ">=0.17.2,<0.19.0", optional = true }
 pytest-django = { version = "^4.5.2", optional = true }
 # rest framework
 djangorestframework = { version = "^3.13.1", optional = true }
