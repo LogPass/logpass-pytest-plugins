@@ -103,8 +103,8 @@ def test_fixtures(tester):  # noqa: WPS442
         line = line.strip()
         if line.startswith('-'):
             break
-        if line and not line.startswith('<string>:3'):
-            auto_pytest_factoryboy_fixtures.append(line)
+        if line and not line.endswith('no docstring available'):
+            auto_pytest_factoryboy_fixtures.append(line.partition(' ')[0])
     assert (
         sorted(auto_pytest_factoryboy_fixtures)
         == expected_auto_pytest_factoryboy_fixtures
