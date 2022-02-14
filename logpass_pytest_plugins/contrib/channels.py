@@ -25,13 +25,10 @@ async def websocket_communicator_factory(
     communicators = []
     application = import_string(settings.ASGI_APPLICATION)
 
-    def factory(*args, **kwargs) -> WebsocketCommunicator:
+    def factory(**kwargs) -> WebsocketCommunicator:
         """Create and register ``WebsocketCommunicator`` instance."""
-        communicator = WebsocketCommunicator(
-            application,
-            *args,
-            **kwargs,
-        )
+        kwargs.setdefault('application', application)
+        communicator = WebsocketCommunicator(**kwargs)
         communicators.append(communicator)
         return communicator
 
@@ -49,8 +46,9 @@ def http_communicator_factory(
     """``HttpCommunicator`` instances factory."""
     application = import_string(settings.ASGI_APPLICATION)
 
-    def factory(*args, **kwargs) -> HttpCommunicator:
+    def factory(**kwargs) -> HttpCommunicator:
         """Create and register ``HttpCommunicator`` instance."""
-        return HttpCommunicator(application, *args, **kwargs)
+        kwargs.setdefault('application', application)
+        return HttpCommunicator(**kwargs)
 
     return factory

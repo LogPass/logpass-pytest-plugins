@@ -40,6 +40,7 @@ def test_websocket_communicator_factory(tester):  # noqa: WPS442
         test_websocket_communicator_factory='''
         import pytest
 
+        from channels.generic.websocket import WebsocketConsumer
         from channels.testing import WebsocketCommunicator
 
 
@@ -49,6 +50,18 @@ def test_websocket_communicator_factory(tester):  # noqa: WPS442
                 websocket_communicator_factory(path='test/communicator-type'),
                 WebsocketCommunicator,
             )
+
+
+        @pytest.mark.asyncio
+        async def test_custom_application(websocket_communicator_factory):
+            consumer = WebsocketConsumer()
+
+            communicator = websocket_communicator_factory(
+                application=consumer,
+                path='test/custom-application',
+            )
+
+            assert communicator.application == consumer
 
 
         @pytest.mark.asyncio
@@ -71,7 +84,7 @@ def test_websocket_communicator_factory(tester):  # noqa: WPS442
 
     tests_results = tester.runpytest()
 
-    tests_results.assert_outcomes(passed=2)
+    tests_results.assert_outcomes(passed=3)
 
 
 def test_http_communicator_factory(tester):  # noqa: WPS442
@@ -80,6 +93,7 @@ def test_http_communicator_factory(tester):  # noqa: WPS442
         test_http_communicator_factory='''
         import pytest
 
+        from channels.generic.http import AsyncHttpConsumer
         from channels.testing import HttpCommunicator
 
 
@@ -92,6 +106,19 @@ def test_http_communicator_factory(tester):  # noqa: WPS442
                 ),
                 HttpCommunicator,
             )
+
+
+        @pytest.mark.asyncio
+        async def test_custom_application(http_communicator_factory):
+            consumer = AsyncHttpConsumer()
+
+            communicator = http_communicator_factory(
+                application=consumer,
+                method='OPTIONS',
+                path='test/custom-application',
+            )
+
+            assert communicator.application == consumer
 
 
         @pytest.mark.asyncio
@@ -117,4 +144,4 @@ def test_http_communicator_factory(tester):  # noqa: WPS442
 
     tests_results = tester.runpytest()
 
-    tests_results.assert_outcomes(passed=2)
+    tests_results.assert_outcomes(passed=3)
