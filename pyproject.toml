@@ -80,7 +80,7 @@ wemake-python-styleguide = "^0.16.1"
 safety = "^1.10.3"
 
 # type hintings
-mypy = "^0.940"
+mypy = "^0.941"
 
 # plugins
 Django = "^3.2.12"
