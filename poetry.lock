@@ -610,11 +610,11 @@ python-versions = ">=3.5"
 
 [[package]]
 name = "import-linter"
-version = "1.2.6"
+version = "1.2.7"
 description = "Enforces rules for the imports within and between Python packages."
 category = "dev"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.7"
 
 [package.dependencies]
 click = ">=6,<9"
@@ -1316,7 +1316,7 @@ rest_framework = ["djangorestframework"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7.0"
-content-hash = "233dbb130fc89c1f68c34325cc83024528f29d1041d13433395cd36d555407ee"
+content-hash = "f41d0fb6b1a95e3db5b5c2a560f34c90856196d947da050aacccf0ad98810e9f"
 
 [metadata.files]
 asgiref = [
@@ -1616,7 +1616,7 @@ idna = [
     {file = "idna-3.3.tar.gz", hash = "sha256:9d643ff0a55b762d5cdb124b8eaa99c66322e2157b69160bc32796e824360e6d"},
 ]
 import-linter = [
-    {file = "import-linter-1.2.6.tar.gz", hash = "sha256:d1f8d4cbc0a7bb3030b7738d7e2eadcff918f070a9db0522b95df2a8834d47de"},
+    {file = "import-linter-1.2.7.tar.gz", hash = "sha256:e0b1a5201cf2c573abdbc3b6b07b280addbac8b29672c5a0431de7502c255d79"},
 ]
 importlib-metadata = [
     {file = "importlib_metadata-4.2.0-py3-none-any.whl", hash = "sha256:057e92c15bc8d9e8109738a48db0ccb31b4d9d5cfbee5a8670879a30be66304b"},
@@ -1759,6 +1759,7 @@ pytest = [
 ]
 pytest-asyncio = [
     {file = "pytest-asyncio-0.18.3.tar.gz", hash = "sha256:7659bdb0a9eb9c6e3ef992eef11a2b3e69697800ad02fb06374a210d85b29f91"},
+    {file = "pytest_asyncio-0.18.3-1-py3-none-any.whl", hash = "sha256:16cf40bdf2b4fb7fc8e4b82bd05ce3fbcd454cbf7b92afc445fe299dabb88213"},
     {file = "pytest_asyncio-0.18.3-py3-none-any.whl", hash = "sha256:8fafa6c52161addfd41ee7ab35f11836c5a16ec208f93ee388f752bea3493a84"},
 ]
 pytest-cov = [
