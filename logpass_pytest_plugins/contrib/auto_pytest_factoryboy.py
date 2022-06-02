@@ -2,6 +2,7 @@ import importlib
 import inspect
 import random
 import string
+import sys
 
 from pathlib import Path
 from types import ModuleType
@@ -89,9 +90,13 @@ def _register_factories_from(module: ModuleType) -> None:
     """Try to register all `factoryboy` factories from ``module``."""
     for name, factory_wannabe in module.__dict__.items():  # noqa: WPS609
         if _is_concrete_factory(name, factory_wannabe):
+            frame = sys._getframe()  # noqa: WPS437
+            plugin_module = inspect.getmodule(frame)
+            assert plugin_module  # noqa: S101  # satisfy `mypy`
             register(
                 factory_wannabe,
                 _name=_get_model_name(factory_wannabe),
+                _caller_locals=plugin_module.__dict__,
             )
 
 
@@ -105,6 +110,8 @@ def _is_concrete_factory(name: str, class_: Any) -> bool:  # type: ignore[misc]
     )
 
 
+# TODO(skarzi): refactor name generation when following PR will be released:
+# https://github.com/pytest-dev/pytest-factoryboy/pull/163
 # TODO(skarzi): firstly try to extract model name from some attribute
 # e.g. `_default_model_name`
 # https://github.com/LogPass/logpass_pytest_plugins/issues/2

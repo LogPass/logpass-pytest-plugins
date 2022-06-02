@@ -97,13 +97,13 @@ def test_fixtures(tester):  # noqa: WPS442
     auto_pytest_factoryboy_fixtures = []
     lines = list(fixtures_result.outlines)
     line = lines.pop(0) if lines else ''
-    while lines and 'auto_pytest_factoryboy' not in line:
+    while lines and 'functools' not in line:
         line = lines.pop(0)
     for line in lines:  # noqa: WPS440
         line = line.strip()
         if line.startswith('-'):
             break
-        if line and not line.endswith('no docstring available'):
+        if line and '--' in line:
             auto_pytest_factoryboy_fixtures.append(line.partition(' ')[0])
     assert (
         sorted(auto_pytest_factoryboy_fixtures)
