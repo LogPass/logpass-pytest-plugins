@@ -2,7 +2,10 @@ import pytest
 
 
 @pytest.fixture
-def tester(pytester, monkeypatch) -> pytest.Pytester:
+def tester(
+    pytester: pytest.Pytester,
+    monkeypatch: pytest.MonkeyPatch,
+) -> pytest.Pytester:
     """Setup ``pytester`` instance able to test `auto_pytest_factoryboy`."""
     pytester.copy_example('pytest.ini.template')
     pytester.makeconftest(
@@ -25,7 +28,7 @@ def tester(pytester, monkeypatch) -> pytest.Pytester:
     return pytester
 
 
-def test_ini_options(tester):  # noqa: WPS442
+def test_ini_options(tester: pytest.Pytester):  # noqa: WPS442
     """Ensure `auto_pytest_factoryboy` INI options are present in help text."""
     help_result = tester.runpytest('--help')
 
@@ -37,7 +40,7 @@ def test_ini_options(tester):  # noqa: WPS442
     assert len(plugin_ini_options_lines) == 2
 
 
-def test_fixtures(tester):  # noqa: WPS442
+def test_fixtures(tester: pytest.Pytester):  # noqa: WPS210, WPS442
     """Ensure proper `factoryboy` fixtures are created."""
     tester.makepyfile(
         factories='''
@@ -97,13 +100,13 @@ def test_fixtures(tester):  # noqa: WPS442
     auto_pytest_factoryboy_fixtures = []
     lines = list(fixtures_result.outlines)
     line = lines.pop(0) if lines else ''
-    while lines and 'functools' not in line:
+    headers = ('functools', 'pytest_factoryboy')
+    while lines and not any(header in line for header in headers):
         line = lines.pop(0)
     for line in lines:  # noqa: WPS440
-        line = line.strip()
-        if line.startswith('-'):
+        if line.strip().startswith('-'):
             break
-        if line and '--' in line:
+        if line and not line.startswith(' '):
             auto_pytest_factoryboy_fixtures.append(line.partition(' ')[0])
     assert (
         sorted(auto_pytest_factoryboy_fixtures)

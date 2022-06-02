@@ -2,7 +2,10 @@ import pytest
 
 
 @pytest.fixture
-def tester(pytester, monkeypatch) -> pytest.Pytester:
+def tester(
+    pytester: pytest.Pytester,
+    monkeypatch: pytest.MonkeyPatch,
+) -> pytest.Pytester:
     """Setup ``pytester`` instance able to test `rest_framework` plugin."""
     pytester.copy_example('django/settings.py')
     pytester.copy_example('pytest.ini.template')
@@ -25,7 +28,7 @@ def tester(pytester, monkeypatch) -> pytest.Pytester:
     return pytester
 
 
-def test_api_client(tester):  # noqa: WPS442
+def test_api_client(tester: pytest.Pytester):  # noqa: WPS442
     """Ensure ``api_client`` fixtures returns expected object."""
     tester.makepyfile(
         test_api_client='''
@@ -42,7 +45,7 @@ def test_api_client(tester):  # noqa: WPS442
     tests_results.assert_outcomes(passed=1)
 
 
-def test_api_rf(tester):  # noqa: WPS442
+def test_api_rf(tester: pytest.Pytester):  # noqa: WPS442
     """Ensure ``api_rf`` fixtures returns expected object."""
     tester.makepyfile(
         test_api_rf='''
