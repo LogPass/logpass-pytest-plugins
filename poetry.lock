@@ -955,16 +955,17 @@ testing = ["django", "django-configurations (>=2.0)"]
 
 [[package]]
 name = "pytest-factoryboy"
-version = "2.1.0"
+version = "2.4.0"
 description = "Factory Boy support for pytest."
 category = "main"
 optional = true
-python-versions = ">=3.6"
+python-versions = ">=3.7"
 
 [package.dependencies]
-factory-boy = ">=2.10.0"
+factory_boy = ">=2.10.0"
 inflection = "*"
-pytest = ">=4.6"
+pytest = ">=5.0.0"
+typing_extensions = "*"
 
 [[package]]
 name = "pytest-mock"
@@ -1317,7 +1318,7 @@ rest_framework = ["djangorestframework"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7.0"
-content-hash = "e895df8956f777b62e0b39ca8984ec5ccab51901faf353fa4f43c2d11083a84e"
+content-hash = "6992ff77c3decfe41b13ff10ea4b54f8d42210e33d06849e9bcec7b1264dcda9"
 
 [metadata.files]
 asgiref = [
@@ -1776,8 +1777,8 @@ pytest-django = [
     {file = "pytest_django-4.5.2-py3-none-any.whl", hash = "sha256:c60834861933773109334fe5a53e83d1ef4828f2203a1d6a0fa9972f4f75ab3e"},
 ]
 pytest-factoryboy = [
-    {file = "pytest-factoryboy-2.1.0.tar.gz", hash = "sha256:23bc562ab32cc39eddfbbbf70e618a1b30e834a4cfa451c4bedc36216f0a7b19"},
-    {file = "pytest_factoryboy-2.1.0-py3-none-any.whl", hash = "sha256:10c02d2736cb52c7af28065db9617e7f50634e95eaa07eeb9a007026aa3dc0a8"},
+    {file = "pytest-factoryboy-2.4.0.tar.gz", hash = "sha256:1bc04f928487b51263a5b7a7695078b9165fd2d5160d88ea5ce5a797469fe89e"},
+    {file = "pytest_factoryboy-2.4.0-py3-none-any.whl", hash = "sha256:afeeaa94d1f6027b1bc59112f55ec918fe1e43859f7765e1188eb36fc1c3b393"},
 ]
 pytest-mock = [
     {file = "pytest-mock-3.7.0.tar.gz", hash = "sha256:5112bd92cc9f186ee96e1a92efc84969ea494939c3aead39c50f421c4cc69534"},

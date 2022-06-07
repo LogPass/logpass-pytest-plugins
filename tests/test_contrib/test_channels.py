@@ -2,7 +2,11 @@ import pytest
 
 
 @pytest.fixture(params=['legacy', 'auto', 'strict'])
-def tester(request, pytester, monkeypatch) -> pytest.Pytester:
+def tester(
+    request: pytest.FixtureRequest,
+    pytester: pytest.Pytester,
+    monkeypatch: pytest.MonkeyPatch,
+) -> pytest.Pytester:
     """Setup ``pytester`` instance able to test `channels` plugin.
 
     This fixture is parametrized, so all `pytest-asycio` modes could
@@ -20,7 +24,9 @@ def tester(request, pytester, monkeypatch) -> pytest.Pytester:
             pytest=pytest_ini.read().format(
                 extra_config='\n'.join([
                     'DJANGO_SETTINGS_MODULE = settings',
-                    'asyncio_mode = {0}'.format(request.param),
+                    'asyncio_mode = {0}'.format(
+                        request.param,  # type: ignore[attr-defined]
+                    ),
                 ]),
                 extra_addopts=' '.join([
                     '-p no:auto_pytest_factoryboy',
@@ -34,7 +40,9 @@ def tester(request, pytester, monkeypatch) -> pytest.Pytester:
     return pytester
 
 
-def test_websocket_communicator_factory(tester):  # noqa: WPS442
+def test_websocket_communicator_factory(
+    tester: pytest.Pytester,  # noqa: WPS442
+):
     """Ensure ``websocket_communicator_factory`` creates expected objects."""
     tester.makepyfile(
         test_websocket_communicator_factory='''
@@ -87,7 +95,7 @@ def test_websocket_communicator_factory(tester):  # noqa: WPS442
     tests_results.assert_outcomes(passed=3)
 
 
-def test_http_communicator_factory(tester):  # noqa: WPS442
+def test_http_communicator_factory(tester: pytest.Pytester):  # noqa: WPS442
     """Ensure ``http_communicator_factory`` creates expected objects."""
     tester.makepyfile(
         test_http_communicator_factory='''

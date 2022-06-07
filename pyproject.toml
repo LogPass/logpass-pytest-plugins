@@ -45,7 +45,7 @@ python = "^3.7.0"
 pytest = ">=6.2.0"
 # optionals
 # auto_pytest_factoryboy
-pytest-factoryboy = { version = "^2.1.0", optional = true }
+pytest-factoryboy = { version = "^2.4.0", optional = true }
 # channels
 channels = { version = ">=3.0.0", optional = true }
 pytest-asyncio = { version = ">=0.17.2,<0.19.0", optional = true }
