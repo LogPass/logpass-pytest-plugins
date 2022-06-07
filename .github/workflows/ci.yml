@@ -57,14 +57,13 @@ jobs:
         with:
           path: .venv
           key: >-
-            venv-${{ matrix.python-version }}-${{ hashFiles('poetry.lock') }}
+            venv-${{ matrix.python-version }}-${{ matrix.pytest-version }}\
+            -${{ hashFiles('poetry.lock') }}
           restore-keys: >-
-            venv-${{ matrix.python-version }}-
+            venv-${{ matrix.python-version }}-${{ matrix.pytest.version }}-
       - name: install dependencies
         run: |
           poetry config virtualenvs.in-project true
-          # install the freshest `pip` to satisfy `safety` and `poetry`
-          poetry run pip install --upgrade pip
           make install
           poetry run pip install "${{ matrix.pytest-version }}"
       - name: test
