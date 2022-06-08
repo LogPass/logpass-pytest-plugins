@@ -42,7 +42,7 @@ def tester(
 
 def test_websocket_communicator_factory(
     tester: pytest.Pytester,  # noqa: WPS442
-):
+) -> None:
     """Ensure ``websocket_communicator_factory`` creates expected objects."""
     tester.makepyfile(
         test_websocket_communicator_factory='''
@@ -95,7 +95,9 @@ def test_websocket_communicator_factory(
     tests_results.assert_outcomes(passed=3)
 
 
-def test_http_communicator_factory(tester: pytest.Pytester):  # noqa: WPS442
+def test_http_communicator_factory(
+    tester: pytest.Pytester,  # noqa: WPS442
+) -> None:
     """Ensure ``http_communicator_factory`` creates expected objects."""
     tester.makepyfile(
         test_http_communicator_factory='''

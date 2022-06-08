@@ -28,7 +28,7 @@ def tester(
     return pytester
 
 
-def test_api_client(tester: pytest.Pytester):  # noqa: WPS442
+def test_api_client(tester: pytest.Pytester) -> None:  # noqa: WPS442
     """Ensure ``api_client`` fixtures returns expected object."""
     tester.makepyfile(
         test_api_client='''
@@ -45,7 +45,7 @@ def test_api_client(tester: pytest.Pytester):  # noqa: WPS442
     tests_results.assert_outcomes(passed=1)
 
 
-def test_api_rf(tester: pytest.Pytester):  # noqa: WPS442
+def test_api_rf(tester: pytest.Pytester) -> None:  # noqa: WPS442
     """Ensure ``api_rf`` fixtures returns expected object."""
     tester.makepyfile(
         test_api_rf='''

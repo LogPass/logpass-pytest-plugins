@@ -28,7 +28,7 @@ def tester(
     return pytester
 
 
-def test_ini_options(tester: pytest.Pytester):  # noqa: WPS442
+def test_ini_options(tester: pytest.Pytester) -> None:  # noqa: WPS442
     """Ensure `auto_pytest_factoryboy` INI options are present in help text."""
     help_result = tester.runpytest('--help')
 
@@ -40,7 +40,7 @@ def test_ini_options(tester: pytest.Pytester):  # noqa: WPS442
     assert len(plugin_ini_options_lines) == 2
 
 
-def test_fixtures(tester: pytest.Pytester):  # noqa: WPS210, WPS442
+def test_fixtures(tester: pytest.Pytester) -> None:  # noqa: WPS210, WPS442
     """Ensure proper `factoryboy` fixtures are created."""
     tester.makepyfile(
         factories='''
