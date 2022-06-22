@@ -1318,7 +1318,7 @@ rest_framework = ["djangorestframework"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7.0"
-content-hash = "6992ff77c3decfe41b13ff10ea4b54f8d42210e33d06849e9bcec7b1264dcda9"
+content-hash = "1d8abb451a7d14d23caa7271792405d25c98cbff1f20330f038fdba986bee293"
 
 [metadata.files]
 asgiref = [
