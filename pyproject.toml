@@ -5,7 +5,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "logpass_pytest_plugins"
-version = "0.0.4"
+version = "0.0.5"
 description = "Pytest's plugins crafted by LogPass"
 authors = [
   "Bartosz Barwikowski <bartosz.barwikowski@logpass.me>",
