@@ -9,7 +9,7 @@
 
 ### Documentation
 
-* add CHANGELOG.md ([54eaac8](https://github.com/LogPass/logpass_pytest_plugins/commit/54eaac8062d54c4ee292fa984cf8d13826febe60))
+* add CHANGELOG.md ([42c3598](https://github.com/LogPass/logpass_pytest_plugins/commit/42c35987c2cc7650dcd586330e59af82bb38de36))
 
 ## [0.0.4](https://github.com/LogPass/logpass_pytest_plugins/compare/0.0.3...0.0.4) (2022-06-08)
 
