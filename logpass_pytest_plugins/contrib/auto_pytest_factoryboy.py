@@ -15,7 +15,10 @@ import inflection
 import pytest
 
 from factory import Factory
-from pytest_factoryboy import register
+from pytest_factoryboy.fixture import (
+    Box,
+    register,
+)
 from typing_extensions import Final
 
 ROOT_DIR_OPTION: Final = 'auto_pytest_factoryboy_root_dir'
@@ -96,7 +99,7 @@ def _register_factories_from(module: ModuleType) -> None:
             register(
                 factory_wannabe,
                 _name=_get_model_name(factory_wannabe),
-                _caller_locals=plugin_module.__dict__,
+                _caller_locals=Box(plugin_module.__dict__),
             )
 
 
