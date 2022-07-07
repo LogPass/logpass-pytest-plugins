@@ -1,3 +1,8 @@
+from typing import (
+    AsyncGenerator,
+    Callable,
+)
+
 import pytest_asyncio
 
 from channels.layers import get_channel_layer
@@ -5,11 +10,12 @@ from channels.testing import (
     HttpCommunicator,
     WebsocketCommunicator,
 )
+from django.conf import Settings
 from django.utils.module_loading import import_string
 
 
 @pytest_asyncio.fixture
-async def _flush_channels(settings):
+async def _flush_channels(settings: Settings) -> AsyncGenerator[None, None]:
     """Flush all channels at the end of the test."""
     yield
     for alias in settings.CHANNEL_LAYERS:
@@ -18,9 +24,9 @@ async def _flush_channels(settings):
 
 @pytest_asyncio.fixture
 async def websocket_communicator_factory(
-    settings,
-    _flush_channels,  # noqa: WPS442
-):
+    settings: Settings,
+    _flush_channels: None,  # noqa: WPS442
+) -> AsyncGenerator[Callable[[], WebsocketCommunicator], None]:
     """Auto-disconnectable ``WebsocketCommunicator`` instances factory."""
     communicators = []
     application = import_string(settings.ASGI_APPLICATION)
@@ -40,9 +46,9 @@ async def websocket_communicator_factory(
 
 @pytest_asyncio.fixture
 def http_communicator_factory(
-    settings,
-    _flush_channels,  # noqa: WPS442
-):
+    settings: Settings,
+    _flush_channels: None,  # noqa: WPS442
+) -> Callable[[], HttpCommunicator]:
     """``HttpCommunicator`` instances factory."""
     application = import_string(settings.ASGI_APPLICATION)
 

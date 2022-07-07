@@ -25,8 +25,8 @@ ROOT_DIR_OPTION: Final = 'auto_pytest_factoryboy_root_dir'
 FACTORY_FILE_PATTERNS_OPTION: Final = 'auto_pytest_factoryboy_globs'
 
 
-@pytest.hookimpl()
-def pytest_addoption(parser):
+@pytest.hookimpl()  # type: ignore[misc]
+def pytest_addoption(parser: pytest.Parser) -> None:
     """Register plugin options."""
     parser.addini(
         ROOT_DIR_OPTION,
@@ -46,8 +46,8 @@ def pytest_addoption(parser):
     )
 
 
-@pytest.hookimpl()
-def pytest_configure(config):
+@pytest.hookimpl()  # type: ignore[misc]
+def pytest_configure(config: pytest.Config) -> None:
     """`pytest` configuration hook.
 
     Automatically register all `factoryboy` factories from selected
