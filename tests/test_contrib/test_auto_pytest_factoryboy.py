@@ -1,5 +1,10 @@
 import pytest
 
+from tests.logic.pytester import (
+    disable_plugins,
+    render_pytest_plugins,
+)
+
 
 @pytest.fixture
 def tester(
@@ -9,19 +14,21 @@ def tester(
     """Setup ``pytester`` instance able to test `auto_pytest_factoryboy`."""
     pytester.copy_example('pytest.ini.template')
     pytester.makeconftest(
-        "pytest_plugins = ['pytest-factoryboy', 'auto_pytest_factoryboy']",
+        render_pytest_plugins(
+            'pytest-factoryboy',
+            'logpass_pytest_plugins.contrib.auto_pytest_factoryboy',
+        ),
     )
     with open(pytester.path / 'pytest.ini.template') as pytest_ini:
         pytester.makefile(
             '.ini',
             pytest=pytest_ini.read().format(
                 extra_config='',
-                extra_addopts=' '.join([
-                    '-p no:asyncio',
-                    '-p no:channels',
-                    '-p no:django',
-                    '-p no:rest_framework',
-                ]),
+                extra_addopts=disable_plugins(
+                    'asyncio',
+                    'django',
+                    'pytest-factoryboy',
+                ),
             ),
         )
     monkeypatch.syspath_prepend(str(pytester.path))
@@ -40,7 +47,9 @@ def test_ini_options(tester: pytest.Pytester) -> None:  # noqa: WPS442
     assert len(plugin_ini_options_lines) == 2
 
 
-def test_fixtures(tester: pytest.Pytester) -> None:  # noqa: WPS210, WPS442
+def test_fixtures(  # noqa: WPS210, WPS231
+    tester: pytest.Pytester,  # noqa: WPS442
+) -> None:
     """Ensure proper `factoryboy` fixtures are created."""
     tester.makepyfile(
         factories='''
@@ -98,13 +107,13 @@ def test_fixtures(tester: pytest.Pytester) -> None:  # noqa: WPS210, WPS442
     fixtures_result = tester.runpytest('--fixtures')
 
     auto_pytest_factoryboy_fixtures = []
-    lines = list(fixtures_result.outlines)
-    line = lines.pop(0) if lines else ''
-    headers = ('functools', 'pytest_factoryboy')
-    while lines and not any(header in line for header in headers):
-        line = lines.pop(0)
+    lines = (
+        fixtures_result.stdout.get_lines_after('*functools*')
+        or fixtures_result.stdout.get_lines_after('*pytest_factoryboy*')
+    )
     for line in lines:  # noqa: WPS440
-        if line.strip().startswith('-'):
+        # start of the next section or end of the report
+        if line.startswith('-') or line.startswith('='):
             break
         if line and not line.startswith(' '):
             auto_pytest_factoryboy_fixtures.append(line.partition(' ')[0])

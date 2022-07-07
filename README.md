@@ -4,7 +4,7 @@ A few pytest plugins used by LogPass.
 
 ## Installation
 
-To use `logpass_pytest_plugins` simply install it with your package manager,
+To use `logpass_pytest_plugins` install it with your package manager,
 e.g. via pip:
 
 ```bash
@@ -24,22 +24,21 @@ dependencies:
 pip install logpass_pytest_plugins[channels,rest_framework]
 ```
 
+And finally add plugin import path to [pytest_plugins][] in your root
+`conftest.py` file, e.g. to use `channels` and `rest_framework` plugins:
+
+```python
+# root `conftest.py`
+pytest_plugins = (
+    'logpass_pytest_plugins.contrib.channels',
+    'logpass_pytest_plugins.contrib.rest_framework',
+)
+```
+
 ## Available plugins
 
-All plugins are used by default (that's default `pytest` behaviour).
-If you don't need some plugin (e.g. you don't use `djangorestframework`)
-simply disable it for particular command call:
-
-```bash
-pytest -p no:rest_framework
-```
-
-or do it in `pytest.ini` (or other file with `pytest` configuration):
-
-```ini
-[pytest]
-addopts = -p no:rest_framework
-```
+NOTE: None plugin is **not** used by default - you need to enable them via
+[pytest_plugins]
 
 ### `logpass_pytest_plugins.contrib.auto_pytest_factoryboy`
 
@@ -76,3 +75,6 @@ by providing following fixtures:
 
 + `api_rf` - `APIRequestFactory` instance
 + `api_client` - `APIClient` instance
+
+
+[pytest_plugins]: https://docs.pytest.org/en/7.1.x/how-to/plugins.html#requiring-loading-plugins-in-a-test-module-or-conftest-file "`pytest_plugins`"

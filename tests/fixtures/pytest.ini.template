@@ -2,7 +2,7 @@
 {extra_config}
 addopts =
   # disable extra plugins
-  -p no:Faker
+  -p no:faker
   -p no:cov
   -p no:deadfixtures
   -p no:forked

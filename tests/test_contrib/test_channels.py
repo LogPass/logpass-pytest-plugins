@@ -1,5 +1,10 @@
 import pytest
 
+from tests.logic.pytester import (
+    disable_plugins,
+    render_pytest_plugins,
+)
+
 
 @pytest.fixture(params=['legacy', 'auto', 'strict'])
 def tester(
@@ -17,7 +22,13 @@ def tester(
     pytester.copy_example('django/settings.py')
     pytester.copy_example('django/asgi.py')
     pytester.copy_example('pytest.ini.template')
-    pytester.makeconftest("pytest_plugins = ['asyncio', 'django', 'channels']")
+    pytester.makeconftest(
+        render_pytest_plugins(
+            'asyncio',
+            'django',
+            'logpass_pytest_plugins.contrib.channels',
+        ),
+    )
     with open(pytester.path / 'pytest.ini.template') as pytest_ini:
         pytester.makefile(
             '.ini',
@@ -28,15 +39,11 @@ def tester(
                         request.param,  # type: ignore[attr-defined]
                     ),
                 ]),
-                extra_addopts=' '.join([
-                    '-p no:auto_pytest_factoryboy',
-                    '-p no:pytest-factoryboy',
-                    '-p no:rest_framework',
-                ]),
+                extra_addopts=disable_plugins('pytest-factoryboy'),
             ),
         )
-    monkeypatch.setenv('DJANGO_SETTINGS_MODULE', 'settings')
     monkeypatch.syspath_prepend(str(pytester.path))
+    monkeypatch.delenv('DJANGO_SETTINGS_MODULE', raising=False)
     return pytester
 
 
