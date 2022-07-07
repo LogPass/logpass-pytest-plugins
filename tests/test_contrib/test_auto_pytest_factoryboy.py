@@ -107,10 +107,11 @@ def test_fixtures(  # noqa: WPS210, WPS231
     fixtures_result = tester.runpytest('--fixtures')
 
     auto_pytest_factoryboy_fixtures = []
-    lines = (
-        fixtures_result.stdout.get_lines_after('*functools*')
-        or fixtures_result.stdout.get_lines_after('*pytest_factoryboy*')
-    )
+    lines = list(fixtures_result.outlines)
+    line = lines.pop(0) if lines else ''
+    headers = ('functools', 'pytest_factoryboy')
+    while lines and not any(header in line for header in headers):
+        line = lines.pop(0)
     for line in lines:  # noqa: WPS440
         # start of the next section or end of the report
         if line.startswith('-') or line.startswith('='):
