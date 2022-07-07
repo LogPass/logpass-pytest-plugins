@@ -76,5 +76,4 @@ by providing following fixtures:
 + `api_rf` - `APIRequestFactory` instance
 + `api_client` - `APIClient` instance
 
-
 [pytest_plugins]: https://docs.pytest.org/en/7.1.x/how-to/plugins.html#requiring-loading-plugins-in-a-test-module-or-conftest-file "`pytest_plugins`"
