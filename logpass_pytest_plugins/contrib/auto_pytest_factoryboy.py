@@ -7,6 +7,7 @@ import sys
 from pathlib import Path
 from types import ModuleType
 from typing import (
+    TYPE_CHECKING,
     Any,
     Type,
 )
@@ -21,12 +22,16 @@ from pytest_factoryboy.fixture import (
 )
 from typing_extensions import Final
 
+if TYPE_CHECKING:
+    from _pytest.config import Config  # noqa: WPS436
+    from _pytest.config.argparsing import Parser  # noqa: WPS436
+
 ROOT_DIR_OPTION: Final = 'auto_pytest_factoryboy_root_dir'
 FACTORY_FILE_PATTERNS_OPTION: Final = 'auto_pytest_factoryboy_globs'
 
 
 @pytest.hookimpl()  # type: ignore[misc]
-def pytest_addoption(parser: pytest.Parser) -> None:
+def pytest_addoption(parser: 'Parser') -> None:
     """Register plugin options."""
     parser.addini(
         ROOT_DIR_OPTION,
@@ -47,7 +52,7 @@ def pytest_addoption(parser: pytest.Parser) -> None:
 
 
 @pytest.hookimpl()  # type: ignore[misc]
-def pytest_configure(config: pytest.Config) -> None:
+def pytest_configure(config: 'Config') -> None:
     """`pytest` configuration hook.
 
     Automatically register all `factoryboy` factories from selected

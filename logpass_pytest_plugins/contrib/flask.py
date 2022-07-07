@@ -1,6 +1,7 @@
 import os
 
 from typing import (
+    TYPE_CHECKING,
     Generator,
     List,
     Optional,
@@ -13,13 +14,17 @@ from flask.testing import FlaskClient
 from typing_extensions import Final
 from werkzeug.utils import import_string
 
+if TYPE_CHECKING:
+    from _pytest.config import Config  # noqa: WPS436
+    from _pytest.config.argparsing import Parser  # noqa: WPS436
+
 SETTINGS_MODULE_ENV: Final = 'FLASK_SETTINGS_MODULE'
 FLASK_APP_ENV: Final = 'FLASK_APP'
 _report_headers_rows: List[str] = []
 
 
 @pytest.hookimpl()  # type: ignore[misc]
-def pytest_addoption(parser: pytest.Parser) -> None:
+def pytest_addoption(parser: 'Parser') -> None:
     """Add Flask's specific INI options."""
     parser.addini(
         SETTINGS_MODULE_ENV,
@@ -32,7 +37,7 @@ def pytest_addoption(parser: pytest.Parser) -> None:
 
 
 @pytest.hookimpl()  # type: ignore[misc]
-def pytest_configure(config: pytest.Config) -> None:
+def pytest_configure(config: 'Config') -> None:
     """Use Flask's testing settings module defined in INI config."""
     settings_source = 'env'
     settings_module = config.getini(SETTINGS_MODULE_ENV)
