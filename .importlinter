@@ -17,4 +17,5 @@ type = independence
 modules =
   logpass_pytest_plugins.contrib.auto_pytest_factoryboy
   logpass_pytest_plugins.contrib.channels
+  logpass_pytest_plugins.contrib.flask
   logpass_pytest_plugins.contrib.rest_framework

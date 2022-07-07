@@ -8,7 +8,8 @@ endif
 
 .PHONY: install
 install:
-	poetry install --extras "auto_pytest_factoryboy channels rest_framework"
+	poetry install \
+		--extras "auto_pytest_factoryboy channels flask rest_framework"
 
 
 .PHONY: lint_python

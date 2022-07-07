@@ -1,0 +1,3 @@
+ENV = 'test'
+
+CUSTOM_VALUE = 123
