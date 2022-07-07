@@ -16,6 +16,7 @@ lint_python:
 	poetry run flake8 .
 	poetry run mypy .
 	poetry run lint-imports
+	find . -type f -name '*.py' | poetry run yesqa
 
 
 .PHONY: unit_local
