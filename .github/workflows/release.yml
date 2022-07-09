@@ -26,10 +26,6 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
-      - name: setup latest node
-        uses: actions/setup-node@v3.3.0
-        with:
-          node-version: 'latest'
       - name: install poetry
         env:
           POETRY_HOME: "~/.poetry"
@@ -43,22 +39,10 @@ jobs:
           | python
           # add `poetry` to `${PATH}`:
           echo "${POETRY_HOME}/bin" >> "${GITHUB_PATH}"
-      - name: install conventional-changelog deps
-        run: npm ci
-      - name: generate changelog and release notes
-        id: changelog
-        uses: TriPSs/conventional-changelog-action@v3.14.0
+      - name: extract release notes from changelog
+        id: release-notes
         with:
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
-          git-push: 'false'
-          skip-commit: 'true'
-          skip-git-pull: 'true'
-          skip-version-file: 'true'
-          create-summary: 'true'
-          tag-prefix: ''
-          output-file: 'false'
-          release-count: 1
-          config-file-path: '.conventional-changelog.js'
+          prerelease: "${{ env.IS_PRERELEASE == 'true' }}"
       - name: build project for distribution
         run: poetry build
       - name: create github release
@@ -68,7 +52,7 @@ jobs:
           token: "${{ secrets.GITHUB_TOKEN }}"
           draft: false
           prerelease: "${{ env.IS_PRERELEASE == 'true' }}"
-          body: "${{ steps.changelog.outputs.clean_changelog }}"
+          body: "${{ steps.release-notes.outputs.release_notes }}"
       - name: publish to PyPI
         env:
           POETRY_PYPI_TOKEN_PYPI: "${{ secrets.PYPI__TOKEN }}"
