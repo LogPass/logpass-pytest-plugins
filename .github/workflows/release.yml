@@ -12,10 +12,24 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: setup python 3.10
+      - name: populate dynamic environment variables
+        run: |
+          IS_PRERELEASE=true
+
+          if [[ "${GITHUB_REF#refs/tags/}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]];
+          then
+            IS_PRERELEASE=false
+          fi
+
+          echo "IS_PRERELEASE=${IS_PRERELEASE}" >> "${GITHUB_PATH}"
+      - name: setup python 3.x
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: '3.x'
+      - name: setup latest node
+        uses: actions/setup-node@v3.3.0
+        with:
+          node-version: 'latest'
       - name: install poetry
         env:
           POETRY_HOME: "~/.poetry"
@@ -29,16 +43,8 @@ jobs:
           | python
           # add `poetry` to `${PATH}`:
           echo "${POETRY_HOME}/bin" >> "${GITHUB_PATH}"
-      - name: populate dynamic environment variables
-        run: |
-          IS_PRERELEASE=true
-
-          if [[ "${GITHUB_REF#refs/tags/}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]];
-          then
-            IS_PRERELEASE=false
-          fi
-
-          echo "IS_PRERELEASE=${IS_PRERELEASE}" >> "${GITHUB_PATH}"
+      - name: install conventional-changelog deps
+        run: npm ci
       - name: generate changelog and release notes
         id: changelog
         uses: TriPSs/conventional-changelog-action@v3.14.0

@@ -19,6 +19,6 @@ module.exports = configFactory({
         { type: 'test', section: 'Tests', hidden: true },
         { type: 'build', section: 'Build System' },
         { type: 'ci', section: 'Continuous Integration', hidden: true },
-        { type: 'release', section: 'Relases', hidden: true },
+        { type: 'release', section: 'Relases', hidden: true }
     ],
 })

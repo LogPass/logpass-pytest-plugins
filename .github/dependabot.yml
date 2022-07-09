@@ -24,3 +24,14 @@ updates:
       - skarzi
     commit-message:
       prefix: "chore(deps): "
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: daily
+      time: "08:20"
+    open-pull-requests-limit: 2
+    reviewers:
+      - bbarwik
+      - skarzi
+    commit-message:
+      prefix: "chore(deps): "
