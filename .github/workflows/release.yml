@@ -4,25 +4,18 @@ name: release
   push:
     tags:
       - '*.*.*'
+
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: setup python 3.10
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
-      - name: populate dynamic environment variables
-        run: |
-          IS_PRERELEASE=true
-
-          if [[ "${GITHUB_REF#refs/tags/}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]];
-          then
-            IS_PRERELEASE=false
-          fi
-
-          echo "IS_PRERELEASE=${IS_PRERELEASE}" >> ${GITHUB_PATH}
       - name: install poetry
         env:
           POETRY_HOME: "~/.poetry"
@@ -35,7 +28,31 @@ jobs:
             --location "https://install.python-poetry.org" \
           | python
           # add `poetry` to `${PATH}`:
-          echo "${POETRY_HOME}/bin" >> ${GITHUB_PATH}
+          echo "${POETRY_HOME}/bin" >> "${GITHUB_PATH}"
+      - name: populate dynamic environment variables
+        run: |
+          IS_PRERELEASE=true
+
+          if [[ "${GITHUB_REF#refs/tags/}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]];
+          then
+            IS_PRERELEASE=false
+          fi
+
+          echo "IS_PRERELEASE=${IS_PRERELEASE}" >> "${GITHUB_PATH}"
+      - name: generate changelog and release notes
+        id: changelog
+        uses: TriPSs/conventional-changelog-action@v3.14.0
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          git-push: 'false'
+          skip-commit: 'true'
+          skip-git-pull: 'true'
+          skip-version-file: 'true'
+          create-summary: 'true'
+          tag-prefix: ''
+          output-file: 'false'
+          release-count: 1
+          config-file-path: '.conventional-changelog.js'
       - name: build project for distribution
         run: poetry build
       - name: create github release
@@ -44,7 +61,8 @@ jobs:
           artifacts: "dist/*"
           token: "${{ secrets.GITHUB_TOKEN }}"
           draft: false
-          prerelease: env.IS_PRERELEASE == 'true'
+          prerelease: "${{ env.IS_PRERELEASE == 'true' }}"
+          body: "${{ steps.changelog.outputs.clean_changelog }}"
       - name: publish to PyPI
         env:
           POETRY_PYPI_TOKEN_PYPI: "${{ secrets.PYPI__TOKEN }}"
