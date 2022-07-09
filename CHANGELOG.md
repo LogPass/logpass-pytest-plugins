@@ -1,5 +1,12 @@
 ##  (2022-07-09)
 
+## [0.1.1](https://github.com/LogPass/logpass_pytest_plugins/compare/0.1.0...0.1.1) (2022-07-09)
+
+
+### Features
+
+* add missing py.typed file to the package ([aa0b466](https://github.com/LogPass/logpass_pytest_plugins/commit/aa0b4667af015f4dc2aa23fbbc7a7806ef0c2375))
+
 ## [0.1.0](https://github.com/LogPass/logpass_pytest_plugins/compare/0.0.5...0.1.0) (2022-07-09)
 
 
