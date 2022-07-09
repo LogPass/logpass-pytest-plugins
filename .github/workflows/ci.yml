@@ -60,7 +60,7 @@ jobs:
             venv-${{ matrix.python-version }}-${{ matrix.pytest-version }}\
             -${{ hashFiles('poetry.lock') }}
           restore-keys: >-
-            venv-${{ matrix.python-version }}-${{ matrix.pytest.version }}-
+            venv-${{ matrix.python-version }}-${{ matrix.pytest-version }}-
       - name: install dependencies
         run: |
           poetry config virtualenvs.in-project true
