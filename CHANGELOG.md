@@ -1,3 +1,29 @@
+##  (2022-07-09)
+
+## [0.1.0](https://github.com/LogPass/logpass_pytest_plugins/compare/0.0.5...0.1.0) (2022-07-09)
+
+
+### Features
+
+* add pytest plugin for flask ([df1eb14](https://github.com/LogPass/logpass_pytest_plugins/commit/df1eb14da1093c71b96bf5334aba5e3040246814)), closes [#63](https://github.com/LogPass/logpass_pytest_plugins/issues/63)
+* do not register plugin to pytest automatically ([bf8efa3](https://github.com/LogPass/logpass_pytest_plugins/commit/bf8efa38de3f57e43a03a287f831e0e44db1e61d))
+
+
+### Bug Fixes
+
+* make type hintings compatible with pytest<7.0.0 ([b43d890](https://github.com/LogPass/logpass_pytest_plugins/commit/b43d890c2f102e74e5d636f517b6080ece5e8a1b))
+
+
+### Dependencies
+
+* **deps:** bump channels from 3.0.4 to 3.0.5 ([#66](https://github.com/LogPass/logpass_pytest_plugins/issues/66)) ([50d036e](https://github.com/LogPass/logpass_pytest_plugins/commit/50d036ec9bb13e120d97777ba29f342ac20fdc23))
+* **deps:** update poetry.lock with flask extras ([10bac5c](https://github.com/LogPass/logpass_pytest_plugins/commit/10bac5c48f1156578e521b02f28ff5b44fc25a83))
+
+
+### Documentation
+
+* **flask:** add missing docs of flask plugin ([da0a81c](https://github.com/LogPass/logpass_pytest_plugins/commit/da0a81ce106d5526c23529d4f58dd84f9d881e72))
+
 ## [0.0.5](https://github.com/LogPass/logpass_pytest_plugins/compare/0.0.4...0.0.5) (2022-06-22)
 
 
@@ -10,6 +36,7 @@
 ### Documentation
 
 * add CHANGELOG.md ([42c3598](https://github.com/LogPass/logpass_pytest_plugins/commit/42c35987c2cc7650dcd586330e59af82bb38de36))
+* update commit hashes in CHANGELOG.md ([f862245](https://github.com/LogPass/logpass_pytest_plugins/commit/f862245caf2967c72fbf1b99e84f3d2928a0e602))
 
 ## [0.0.4](https://github.com/LogPass/logpass_pytest_plugins/compare/0.0.3...0.0.4) (2022-06-08)
 
