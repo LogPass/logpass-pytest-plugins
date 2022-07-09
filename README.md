@@ -68,6 +68,28 @@ fixtures:
   instances. Using this fixture also automatically flush all used
   channel layers
 
+### `logpass_pytest_plugins.contrib.flask`
+
+Plugin that simplifies `flask` views and other components testing
+by providing following fixtures:
+
++ `flask_app` - `Flask` app instance
++ `client` - `FlaskClient` instance to use in tests
+
+Following INI options can be used to configure `flask` plugin:
+
++ `FLASK_SETTINGS_MODULE` - import path to settings module when using
+  flask's config from object. Overrides `FLASK_SETTINGS_MODULE` environment
+  variable.
++ `FLASK_APP` - import path to flask app factory or flask app instance.
+  Overrides `FLASK_APP` environment variable.
+
+To use `flask` plugin you need to do one of following:
+
++ set `FLASK_APP` INI option
++ set `FLASK_APP` environment variable
++ define `flask_app` function-scoped fixture in root `conftest.py`
+
 ### `logpass_pytest_plugins.contrib.rest_framework`
 
 Plugin that simplifies `rest_framework` views and other components testing
