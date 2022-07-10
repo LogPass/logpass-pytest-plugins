@@ -68,3 +68,20 @@ def test_client(tester: pytest.Pytester) -> None:
     tests_results = tester.runpytest()
 
     tests_results.assert_outcomes(passed=1)
+
+
+def test_cli_runner(tester: pytest.Pytester) -> None:
+    """Ensure ``cli_runner`` fixtures returns expected object."""
+    tester.makepyfile(
+        test_cli_runner='''
+        from flask.testing import FlaskCliRunner
+
+
+        def test_cli_runner(cli_runner):
+            assert isinstance(cli_runner, FlaskCliRunner)
+        ''',
+    )
+
+    tests_results = tester.runpytest()
+
+    tests_results.assert_outcomes(passed=1)

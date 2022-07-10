@@ -10,7 +10,10 @@ from typing import (
 import pytest
 
 from flask import Flask
-from flask.testing import FlaskClient
+from flask.testing import (
+    FlaskClient,
+    FlaskCliRunner,
+)
 from typing_extensions import Final
 from werkzeug.utils import import_string
 
@@ -99,3 +102,9 @@ def client(
     """Flask testing HTTP client instance."""
     with flask_app.test_client() as test_client:
         yield test_client
+
+
+@pytest.fixture
+def cli_runner(flask_app: Flask) -> FlaskCliRunner:  # noqa: WPS442
+    """Flask testing CLI runner instance."""
+    return flask_app.test_cli_runner()
