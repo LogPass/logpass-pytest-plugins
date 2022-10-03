@@ -40,7 +40,7 @@ jobs:
           # add `poetry` to `${PATH}`:
           echo "${POETRY_HOME}/bin" >> "${GITHUB_PATH}"
       - name: extract release notes from changelog
-        uses: ffurrer2/extract-release-notes@v1.15.0
+        uses: ffurrer2/extract-release-notes@v1.16.0
         id: release-notes
         with:
           prerelease: "${{ env.IS_PRERELEASE == 'true' }}"
