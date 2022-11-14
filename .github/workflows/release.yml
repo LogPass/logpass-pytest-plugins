@@ -47,7 +47,7 @@ jobs:
       - name: build project for distribution
         run: poetry build
       - name: create github release
-        uses: ncipollo/release-action@v1.10.0
+        uses: ncipollo/release-action@v1.11.2
         with:
           artifacts: "dist/*"
           token: "${{ secrets.GITHUB_TOKEN }}"
