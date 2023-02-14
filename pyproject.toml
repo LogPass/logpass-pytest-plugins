@@ -81,4 +81,4 @@ safety = "^2.1.0"
 mypy = "^0.961"
 
 # plugins
-Django = "^3.2.14"
+Django = "^3.2.18"
