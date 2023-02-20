@@ -9,7 +9,7 @@ name: ci
 
 jobs:
   test_commons:
-    uses: LogPass/reusable-workflows/.github/workflows/test_commons.yml@0.0.3
+    uses: LogPass/reusable-workflows/.github/workflows/test_commons.yml@0.0.4
 
   test:
     runs-on: ubuntu-latest

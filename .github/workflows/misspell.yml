@@ -7,7 +7,7 @@ name: misspell
 
 jobs:
   build:
-    uses: LogPass/reusable-workflows/.github/workflows/misspell.yml@0.0.3
+    uses: LogPass/reusable-workflows/.github/workflows/misspell.yml@0.0.4
     with:
       pr-reviewers: |
         bbarwik
